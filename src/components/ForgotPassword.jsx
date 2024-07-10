@@ -28,10 +28,15 @@ const ForgotPassword = () => {
   };
   //Function to send mail ID to the user and verify it
   const verifyMailID = async () => {
-    const data = await forgotUserPasswordData(mailID);
-    const id = data.idforParam;
-    setUserIDforParam(id);
-    alert("click change password button");
+    try {
+      const data = await forgotUserPasswordData(mailID);
+      const id = data.idforParam;
+      setUserIDforParam(id);
+      alert("click change password button");
+    } catch (error) {
+      alert(error.message);
+    }
+   
   };
   //Set mail ID to the user and verify it by an API call
   useEffect(() => {
