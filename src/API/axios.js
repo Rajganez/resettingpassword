@@ -27,6 +27,16 @@ const loginUserData = async (loginData) => {
 
 const forgotUserPasswordData = async (emailData) => {
   const response = await resInstance.post("/forgotpassword", emailData);
+  try {
+    if(response.status === 401){
+      throw new Error("401");
+     }
+  } catch (error) {
+    if(error.message === "401"){
+      throw new Error("Expired");
+    }
+  }
+ 
   return response.data;
 };
 

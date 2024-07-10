@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import "../App.css";
 import { forgotUserPasswordData } from "../API/axios.js";
-import { NavLink } from "react-router-dom";
+// import { NavLink } from "react-router-dom";
 
 //A step before the password reset to check the User exist in the database
 const ForgotPassword = () => {
@@ -15,7 +15,7 @@ const ForgotPassword = () => {
   //State to store the error message
   const [error, setError] = useState("");
   //State to store the user ID for password reset URL parameter
-  const [userIDforParam, setUserIDforParam] = useState(null);
+  // const [userIDforParam, setUserIDforParam] = useState(null);
 
   //Function to handle form change event
   const handleChange = (e) => {
@@ -31,12 +31,20 @@ const ForgotPassword = () => {
     try {
       const data = await forgotUserPasswordData(mailID);
       const id = data.idforParam;
-      setUserIDforParam(id);
-      alert("click change password button");
+      // setUserIDforParam(id);
+      // alert("click change password button");
+      if (id !== null) {
+        alert("Mail sent successfully. Please check your inbox.");
+        setFormData(intialForm);
+      }
     } catch (error) {
+      if (error.message === "Expired") {
+        alert(
+          "You had not changed your password more than an hour, Try resetting again"
+        );
+      }
       alert("User Not Found - Please Sign Up");
     }
-   
   };
   //Set mail ID to the user and verify it by an API call
   useEffect(() => {
@@ -77,7 +85,7 @@ const ForgotPassword = () => {
           <button type="submit" className="btn btn-primary mt-4">
             Reset
           </button>
-          {userIDforParam !== null && (
+          {/* {userIDforParam !== null && (
             <NavLink
               to={`/passwordreset/${userIDforParam}`}
               type="submit"
@@ -85,7 +93,7 @@ const ForgotPassword = () => {
             >
               Change
             </NavLink>
-          )}
+          )} */}
         </form>
       </div>
     </div>
