@@ -30,7 +30,7 @@ const ForgotPassword = () => {
   const verifyMailID = async () => {
     try {
       const data = await forgotUserPasswordData(mailID);
-      const id = data.idforParam;
+      const id = data.token;
       // setUserIDforParam(id);
       // alert("click change password button");
       if (id !== null) {

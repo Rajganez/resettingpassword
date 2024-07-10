@@ -16,7 +16,7 @@ const PasswordReset = () => {
   //State to hold the error message if the new password and confirm new Password doesn't match
   const [error, setError] = useState("");
   //Received UserID as the Param
-  const { UserId } = useParams();
+  const { token } = useParams();
 
   //Handle form change event and update the state of formData and error state
   const handleChange = (e) => {
@@ -30,7 +30,7 @@ const PasswordReset = () => {
 
   //Function to send the new password data to the server for password reset
   const resetPassword = async () => {
-    await resetPasswordData(newPass, UserId);
+    await resetPasswordData(newPass, token);
     alert("Password reset was successful Proceed to Login with new password");
   };
 
