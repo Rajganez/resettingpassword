@@ -44,9 +44,9 @@ const forgotUserPasswordData = async (emailData) => {
   
 };
 
-const resetPasswordData = async (newPassData, token) => {
+const resetPasswordData = async (newPassData, idforParam) => {
   const response = await resInstance.post(
-    `/passwordreset/${token}`,
+    `/passwordreset/${idforParam}`,
     newPassData
   );
   return response.data;
