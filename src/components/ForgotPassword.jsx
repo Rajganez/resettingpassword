@@ -34,7 +34,7 @@ const ForgotPassword = () => {
       setUserIDforParam(id);
       alert("click change password button");
     } catch (error) {
-      alert(error.message);
+      alert("User Not Found - Please Sign Up");
     }
    
   };
