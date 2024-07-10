@@ -6,7 +6,7 @@ import PasswordReset from "./components/PasswordReset";
 import { Route, Routes, BrowserRouter } from "react-router-dom";
 import Dashboard from "./components/Dashboard";
 import Logout from "./components/Logout";
-import PageNotFound from "./components/PageNotFound";
+// import PageNotFound from "./components/PageNotFound";
 
 function App() {
   return (
@@ -22,10 +22,10 @@ function App() {
             <Route path="/dashboard/:UserId" element={<Dashboard/>}/>
             <Route path="/logout/:UserId" element={<Logout/>}/>
           </Route>
-          <Route
+          {/* <Route
             path="*"
             element={<PageNotFound/>}
-          />
+          /> */}
         </Routes>
       </BrowserRouter>
     </>
