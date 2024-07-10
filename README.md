@@ -10,6 +10,8 @@ New User can be added to the database with the required data
 
 ## Features :
 
+_Used JsonWebToken for creating a string on User login with the expiry time of One hour_
+
 _In this Application it performs all opertions like (Register/Sign Up, Login, Forgot Password/Resetting Password, and Logout )_
 
 _Registration Page (Register.jsx)_
