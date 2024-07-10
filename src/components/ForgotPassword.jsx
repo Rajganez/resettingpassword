@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import "../App.css";
 import { forgotUserPasswordData } from "../API/axios.js";
 // import { NavLink } from "react-router-dom";
@@ -10,8 +10,6 @@ const ForgotPassword = () => {
   };
   //State to store the form change data
   const [formData, setFormData] = useState(intialForm);
-  //State to store the mailID data from the form
-  const [mailID, setMailID] = useState([]);
   //State to store the error message
   const [error, setError] = useState("");
   //State to store the user ID for password reset URL parameter
@@ -27,9 +25,9 @@ const ForgotPassword = () => {
     setError("");
   };
   //Function to send mail ID to the user and verify it
-  const verifyMailID = async () => {
+  const verifyMailID = async (email) => {
     try {
-      const data = await forgotUserPasswordData(mailID);
+      const data = await forgotUserPasswordData({email});
       const id = data.idforParam;
       // setUserIDforParam(id);
       // alert("click change password button");
@@ -46,10 +44,6 @@ const ForgotPassword = () => {
       alert("User Not Found - Please Sign Up");
     }
   };
-  //Set mail ID to the user and verify it by an API call
-  useEffect(() => {
-    setMailID(formData);
-  }, [formData]);
 
   //Form submission function to send mail ID to the user and verify it by an API call
   const handleSubmit = (e) => {
@@ -58,7 +52,7 @@ const ForgotPassword = () => {
       setError("Enter Valid Email");
       return;
     }
-    verifyMailID();
+    verifyMailID(formData.email);
     setFormData(intialForm);
   };
 
