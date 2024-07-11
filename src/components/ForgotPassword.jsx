@@ -34,14 +34,11 @@ const ForgotPassword = () => {
       if (id !== null) {
         alert("Mail sent successfully. Please check your inbox.");
         setFormData(intialForm);
+      }else {
+        alert("User Not Found - Please Sign Up");
       }
     } catch (error) {
-      if (error.message === "Expired") {
-        alert(
-          "You had not changed your password more than an hour, Try resetting again"
-        );
-      }
-      alert("User Not Found - Please Sign Up");
+      console.log(error.message);
     }
   };
 
