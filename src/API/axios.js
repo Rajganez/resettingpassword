@@ -26,8 +26,8 @@ const loginUserData = async (loginData) => {
 };
 
 const forgotUserPasswordData = async (emailData) => {
-    const response = await resInstance.post("/forgotpassword", emailData);
-    return response.data;
+  const response = await resInstance.post("/forgotpassword", emailData);
+  return response.data;
 };
 
 const resetPasswordData = async (newPassData, idforParam) => {
@@ -37,14 +37,15 @@ const resetPasswordData = async (newPassData, idforParam) => {
       newPassData
     );
     if (response.status === 401) {
-      throw new Error("401");
+      throw new Error("Expired");
     }
 
     return response.data;
   } catch (error) {
-    if (error.message === "401") {
+    if (error.response && error.response.status === 401) {
       throw new Error("Expired");
     }
+    throw new Error(error.message || "Error in Resetting try refreshing");
   }
 };
 

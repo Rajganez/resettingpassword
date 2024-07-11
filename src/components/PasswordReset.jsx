@@ -32,15 +32,20 @@ const PasswordReset = () => {
   const resetPassword = async () => {
     try {
       await resetPasswordData(newPass, idforParam);
-    alert("Password reset was successful Proceed to Login with new password");
+      alert(
+        "Password reset was successful. Proceed to Login with your new password"
+      );
     } catch (error) {
-      if(error.message === "Expired"){
+      if (error.message === "Expired") {
         alert(
-          "You had not changed your password more than an hour, Try resetting again"
+          "Your password reset link has expired. Please try resetting your password again."
+        );
+      } else {
+        alert(
+          "An error occurred while resetting your password. Please try again."
         );
       }
     }
-    
   };
 
   //Update the newPass state with the formData whenever formData changes
