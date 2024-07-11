@@ -26,30 +26,37 @@ const loginUserData = async (loginData) => {
 };
 
 const forgotUserPasswordData = async (emailData) => {
-  
   try {
     const response = await resInstance.post("/forgotpassword", emailData);
-    if(response.status === 401){
+    if (response.status === 401) {
       throw new Error("401");
-     }
-     return response.data;
+    }
+    return response.data;
   } catch (error) {
-    if(error.msg === "401"){
+    if (error.msg === "401") {
       throw new Error("Expired");
-    }else {
+    } else {
       throw new Error(error.message);
     }
   }
- 
-  
 };
 
 const resetPasswordData = async (newPassData, idforParam) => {
-  const response = await resInstance.post(
-    `/passwordreset/${idforParam}`,
-    newPassData
-  );
-  return response.data;
+  try {
+    const response = await resInstance.post(
+      `/passwordreset/${idforParam}`,
+      newPassData
+    );
+    if (response.status === 401) {
+      throw new Error("401");
+    }
+
+    return response.data;
+  } catch (error) {
+    if (error.msg === "401") {
+      throw new Error("Expired");
+    }
+  }
 };
 
 const dbUsers = async (UserId) => {
@@ -60,7 +67,7 @@ const dbUsers = async (UserId) => {
 const loggingOut = async (UserId) => {
   const response = await resInstance.post(`/logout/${UserId}`);
   return response.data;
-}
+};
 
 export {
   getAllUsers,
@@ -68,5 +75,5 @@ export {
   forgotUserPasswordData,
   resetPasswordData,
   dbUsers,
-  loggingOut
+  loggingOut,
 };
