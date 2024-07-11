@@ -42,7 +42,7 @@ const PasswordReset = () => {
         );
       } else {
         alert(
-          "An error occurred while resetting your password. Please try again."
+          "An error occurred while resetting your password. link Expired"
         );
       }
     }
