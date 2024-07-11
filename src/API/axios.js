@@ -42,7 +42,7 @@ const resetPasswordData = async (newPassData, idforParam) => {
 
     return response.data;
   } catch (error) {
-    if (error.msg === "401") {
+    if (error.message === "401") {
       throw new Error("Expired");
     }
   }
